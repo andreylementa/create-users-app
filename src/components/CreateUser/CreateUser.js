@@ -7,11 +7,14 @@ const CreateUser = (props) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    name.length === 0 && console.log("ошибка");
+    if (name.length === 0 || age.length === 0) {
+      setAge("");
+      props.changeModal();
+    } else {
+      const userData = { name: name, age: age, id: new Date() };
+      props.addUser(userData);
+    }
     setInputName("");
-    setAge("");
-    const userData = { name: name, age: age, id: new Date() };
-    props.addUser(userData);
   };
 
   const nameHandler = (e) => {

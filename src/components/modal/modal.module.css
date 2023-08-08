@@ -1,0 +1,26 @@
+.modal {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  transform: scale(0);
+  display: none;
+}
+
+.active_modal {
+  display: flex;
+  transform: scale(1);
+}
+
+.modal_content {
+  width: 40vw;
+  height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: aqua;
+  font-size: 30px;
+}

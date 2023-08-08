@@ -2,9 +2,17 @@ import "./App.css";
 import CreateUser from "./components/CreateUser/CreateUser";
 import UserList from "./components/UserList/UserList";
 import React, { useState } from "react";
+import Modal from "./components/modal/Modal";
 
 function App() {
   const [usersData, setUsersData] = useState([]);
+
+  const [activeModal, setActiveModal] = useState(false);
+
+  const changeModalHandler = () => {
+    setActiveModal(!activeModal);
+  };
+
   const addUserHandler = (user) => {
     setUsersData((prevState) => {
       const updatedData = [...prevState];
@@ -29,8 +37,12 @@ function App() {
 
   return (
     <div className="App">
-      <CreateUser addUser={addUserHandler}></CreateUser>
+      <CreateUser
+        addUser={addUserHandler}
+        changeModal={changeModalHandler}
+      ></CreateUser>
       {content}
+      <Modal activeModal={activeModal} changeModal={changeModalHandler}></Modal>
     </div>
   );
 }
