@@ -1,48 +1,62 @@
 import style from "./createUser.module.css";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 const CreateUser = (props) => {
-  const [name, setInputName] = useState("");
-  const [age, setAge] = useState("");
+  //const [name, setInputName] = useState("");
+  //const [age, setAge] = useState("");
+
+  const userNameRef = useRef();
+  const userAgeRef = useRef();
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (name.length === 0 || age.length === 0) {
-      setAge("");
+    if (
+      userNameRef.current.value.length === 0 ||
+      userAgeRef.current.value.length === 0
+    ) {
+      //setAge("");
       props.changeModal();
     } else {
-      const userData = { name: name, age: age, id: new Date() };
+      const userData = {
+        name: userNameRef.current.value,
+        age: userAgeRef.current.value,
+        id: new Date(),
+      };
       props.addUser(userData);
     }
-    setInputName("");
+    userNameRef.current.value = "";
+    userAgeRef.current.value = "";
+    //setInputName("");
   };
 
-  const nameHandler = (e) => {
-    setInputName(e.target.value.trim());
-  };
+  //const nameHandler = (e) => {
+  //  setInputName(e.target.value.trim());
+  //};
 
-  const ageHandler = (e) => {
-    setAge(e.target.value.trim());
-  };
+  //const ageHandler = (e) => {
+  //  setAge(e.target.value.trim());
+  //};
   return (
     <form className={style.create__form} onSubmit={submitHandler}>
       <div className={style.create__form_item}>
         <label className={style.create__form_label}>Имя</label>
         <input
-          value={name}
+          //value={name}
           className={style.create__form_input}
-          onChange={nameHandler}
+          //onChange={nameHandler}
           type="text"
+          ref={userNameRef}
         ></input>
       </div>
       <div className={style.create__form_item}>
         <label className={style.create__form_label}>Возраст</label>
         <input
           min={0}
-          value={age}
+          //value={age}
           className={style.create__form_input}
-          onChange={ageHandler}
+          //onChange={ageHandler}
           type="number"
+          ref={userAgeRef}
         ></input>
       </div>
       <button className={style.btn} type="submit">

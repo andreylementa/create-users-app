@@ -9,6 +9,7 @@ const Modal = (props) => {
     <div
       className={`${style.modal} ${props.activeModal && style.active_modal}`}
       onClick={changeModalHandler}
+      onKeyDown={changeModalHandler}
     >
       <div className={style.modal_content} onClick={(e) => e.stopPropagation()}>
         Некорректно
