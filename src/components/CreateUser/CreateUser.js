@@ -9,6 +9,7 @@ const CreateUser = (props) => {
     e.preventDefault();
     name.length === 0 && console.log("ошибка");
     setInputName("");
+    setAge("");
     const userData = { name: name, age: age, id: new Date() };
     props.addUser(userData);
   };
@@ -34,6 +35,7 @@ const CreateUser = (props) => {
       <div className={style.create__form_item}>
         <label className={style.create__form_label}>Возраст</label>
         <input
+          min={0}
           value={age}
           className={style.create__form_input}
           onChange={ageHandler}
